@@ -2,7 +2,7 @@ package chess.pieces;
 
 import board.Board;
 import chess.ChessPiece;
-import chess.Color;
+import chess.enums.Color;
 
 public class King extends ChessPiece {
 
