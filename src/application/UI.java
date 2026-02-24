@@ -65,4 +65,12 @@ public class UI {
 
         System.out.print(" ");
     }
+
+    public static void clearScreen() {
+//        System.out.print("\033[H\033[2J");
+//        System.out.flush();
+
+        System.out.print("\033[H\033[2J\033[3J");
+        System.out.flush();
+    }
 }
