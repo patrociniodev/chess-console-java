@@ -35,7 +35,7 @@ public class Program {
             catch(InputMismatchException e) {
                 System.out.println("\n" + e.getMessage());
                 scanner.nextLine();
-                System.out.println("Press ENTER to continue");
+                System.out.println("\nPress ENTER to continue");
                 scanner.nextLine();
             }
         }

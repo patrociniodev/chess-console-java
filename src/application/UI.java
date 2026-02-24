@@ -37,7 +37,7 @@ public class UI {
 
             return new ChessPosition(chessPositionChar, chessPositionNumber);
         } catch (InputMismatchException e) {
-            throw new BoardException("Error reading ChessPosition. Valid values are from a1 to h8");
+            throw new BoardException("Error reading ChessPosition: Valid values are from a1 to h8");
         }
     }
 
