@@ -14,12 +14,13 @@ public class Program {
         ChessMatch chessMatch = new ChessMatch();
         Scanner scanner = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             try {
                 UI.clearScreen();
-                UI.printBoard(chessMatch.getPieces());
+//                UI.printBoard(chessMatch.getPieces());
+                UI.printMatch(chessMatch);
                 System.out.println();
-                System.out.print("Source: ");
+                System.out.print("\nSource: ");
                 ChessPosition source = UI.readChessPosition(scanner);
 
                 boolean[][] possibleMoves = chessMatch.possibleMoves(source);
@@ -32,14 +33,12 @@ public class Program {
                 ChessPosition target = UI.readChessPosition(scanner);
 
                 ChessPiece capturedPiece = chessMatch.performChessMove(source, target);
-            }
-            catch(ChessException e) {
+            } catch (ChessException e) {
                 System.out.println("\n" + e.getMessage());
                 scanner.nextLine();
                 System.out.println("\nPress ENTER to continue");
                 scanner.nextLine();
-            }
-            catch(InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("\n" + e.getMessage());
                 scanner.nextLine();
                 System.out.println("\nPress ENTER to continue");

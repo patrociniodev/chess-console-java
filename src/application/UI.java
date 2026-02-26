@@ -1,6 +1,7 @@
 package application;
 
 import board.exceptions.BoardException;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.enums.Color;
@@ -39,6 +40,12 @@ public class UI {
         } catch (InputMismatchException e) {
             throw new BoardException("Error reading ChessPosition: Valid values are from a1 to h8");
         }
+    }
+
+    public static void printMatch(ChessMatch match) {
+        printBoard(match.getPieces());
+        System.out.printf("%nTurn: %d%n", match.getTurn());
+        System.out.printf("Waiting for player: %s", match.getCurrentPlayer().toString());
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
