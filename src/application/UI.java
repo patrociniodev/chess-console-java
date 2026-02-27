@@ -37,9 +37,8 @@ public class UI {
             String s = scanner.next();
             char chessPositionChar = s.toLowerCase().charAt(0);
             int chessPositionNumber = Integer.parseInt(s.substring(1));
-
             return new ChessPosition(chessPositionChar, chessPositionNumber);
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchException | NumberFormatException e) {
             throw new BoardException("Error reading ChessPosition: Valid values are from a1 to h8");
         }
     }
@@ -49,6 +48,9 @@ public class UI {
         printCapturedPieces(capturedPieces);
         System.out.printf("%n%nTurn: %d%n", match.getTurn());
         System.out.printf("Waiting for player: %s", match.getCurrentPlayer().toString());
+        if(match.getCheck()) {
+            System.out.print("\nCHECK!");
+        }
     }
 
     public static void printBoard(ChessPiece[][] pieces) {
@@ -108,9 +110,6 @@ public class UI {
     }
 
     public static void clearScreen() {
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-
         System.out.print("\033[H\033[2J\033[3J");
         System.out.flush();
     }

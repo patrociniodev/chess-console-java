@@ -40,15 +40,10 @@ public class Program {
                     captured.add(capturedPiece);
                 }
 
-            } catch (ChessException e) {
+            } catch (ChessException | InputMismatchException e) {
                 System.out.println("\n" + e.getMessage());
                 scanner.nextLine();
-                System.out.println("\nPress ENTER to continue");
-                scanner.nextLine();
-            } catch (InputMismatchException e) {
-                System.out.println("\n" + e.getMessage());
-                scanner.nextLine();
-                System.out.println("\nPress ENTER to continue");
+                System.out.println("Press ENTER to continue");
                 scanner.nextLine();
             }
         }
