@@ -47,9 +47,15 @@ public class UI {
         printBoard(match.getPieces());
         printCapturedPieces(capturedPieces);
         System.out.printf("%n%nTurn: %d%n", match.getTurn());
-        System.out.printf("Waiting for player: %s", match.getCurrentPlayer().toString());
-        if(match.getCheck()) {
-            System.out.print("\nCHECK!");
+        if(!match.getCheckMate()) {
+            System.out.printf("Waiting for player: %s", match.getCurrentPlayer().toString());
+            if (match.getCheck()) {
+                System.out.print("\nCHECK!");
+            }
+        } else {
+            System.out.println("\nCHECKMATE!");
+            System.out.printf("Winner: %s", match.getCurrentPlayer().toString());
+            System.out.println();
         }
     }
 
