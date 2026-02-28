@@ -28,4 +28,12 @@ public abstract class ChessPiece extends Piece {
 
         return aux != null && color != aux.getColor();
     }
+
+    protected void increaseMoveCount() {
+        moveCount++;
+    }
+
+    protected void decreaseMoveCount() {
+        moveCount--;
+    }
 }
