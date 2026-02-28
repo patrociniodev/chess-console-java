@@ -41,10 +41,6 @@ public class Program {
                 scanner.nextLine();
                 System.out.println("Press ENTER to continue");
                 scanner.nextLine();
-            } catch(NoSuchElementException e) {
-                System.out.println();
-                System.out.println("\n" + "Application finished by user.");
-                break;
             }
         }
         scanner.close();
