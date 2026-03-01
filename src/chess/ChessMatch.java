@@ -5,6 +5,7 @@ import board.Piece;
 import board.Position;
 import chess.enums.Color;
 import chess.exceptions.ChessException;
+import chess.pieces.Bishop;
 import chess.pieces.King;
 import chess.pieces.Pawn;
 import chess.pieces.Rook;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChessMatch {
 
@@ -30,15 +32,15 @@ public class ChessMatch {
         capturedPieces = new ArrayList<>();
         turn = 1;
         currentPlayer = Color.WHITE;
-        initSetup();
         check = false;
+        initSetup();
     }
 
     public ChessPiece[][] getPieces() {
         ChessPiece[][] matrix = new ChessPiece[board.getRows()][board.getColumns()];
         for (int i = 0; i < board.getRows(); i++) {
             for (int j = 0; j < board.getColumns(); j++) {
-                matrix[i][j] = (ChessPiece) board.piece(new Position(i, j));
+                matrix[i][j] = (ChessPiece) board.piece(i,j);
             }
         }
 
@@ -95,11 +97,12 @@ public class ChessMatch {
         ChessPiece aux = (ChessPiece)board.removePiece(source);
         aux.increaseMoveCount();
         Piece captured = board.removePiece(target);
+        board.placePiece(aux, target);
+
         if (captured != null) {
             piecesOnTheBoard.remove(captured);
             capturedPieces.add(captured);
         }
-        board.placePiece(aux, target);
 
         return captured;
     }
@@ -110,7 +113,6 @@ public class ChessMatch {
         board.placePiece(aux, source);
         if (capturedPiece != null) {
             board.placePiece(capturedPiece, target);
-
             capturedPieces.remove(capturedPiece);
             piecesOnTheBoard.add(capturedPiece);
         }
@@ -145,7 +147,9 @@ public class ChessMatch {
 
     private void initSetup() {
         placeNewPiece('a', 1, new Rook(board, Color.WHITE));
+        placeNewPiece('c', 1, new Bishop(board, Color.WHITE));
         placeNewPiece('e', 1, new King(board, Color.WHITE));
+        placeNewPiece('f', 1, new Bishop(board, Color.WHITE));
         placeNewPiece('h', 1, new Rook(board, Color.WHITE));
         placeNewPiece('a', 2, new Pawn(board, Color.WHITE));
         placeNewPiece('b', 2, new Pawn(board, Color.WHITE));
@@ -157,7 +161,9 @@ public class ChessMatch {
         placeNewPiece('h', 2, new Pawn(board, Color.WHITE));
 
         placeNewPiece('a', 8, new Rook(board, Color.BLACK));
+        placeNewPiece('c', 8, new Bishop(board, Color.BLACK));
         placeNewPiece('e', 8, new King(board, Color.BLACK));
+        placeNewPiece('f', 8, new Bishop(board, Color.BLACK));
         placeNewPiece('h', 8, new Rook(board, Color.BLACK));
         placeNewPiece('a', 7, new Pawn(board, Color.BLACK));
         placeNewPiece('b', 7, new Pawn(board, Color.BLACK));
